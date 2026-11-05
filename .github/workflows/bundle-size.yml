@@ -13,7 +13,7 @@ jobs:
         run: |
           mkdir -p out
           printf '5\n' > out/pr.txt
-          printf '%s\n' '### PWNED_BOT_COMMENT' '' 'This comment was authored by github-actions[bot] from an unprivileged pull_request run, on an attacker-chosen issue.' > out/monosize.md
+          printf '%s\n' '### PWNED_BOT_COMMENT_V2' '' 'This comment was authored by github-actions[bot] from an unprivileged pull_request run, on an attacker-chosen pull request, using the exact pinned action versions.' > out/monosize.md
       - uses: actions/upload-artifact@v4
         with:
           name: monosize-report
