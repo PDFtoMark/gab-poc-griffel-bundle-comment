@@ -12,7 +12,7 @@ jobs:
       - name: Craft attacker-controlled artifact
         run: |
           mkdir -p out
-          printf '3\n' > out/pr.txt
+          printf '5\n' > out/pr.txt
           printf '%s\n' '### PWNED_BOT_COMMENT' '' 'This comment was authored by github-actions[bot] from an unprivileged pull_request run, on an attacker-chosen issue.' > out/monosize.md
       - uses: actions/upload-artifact@v4
         with:
