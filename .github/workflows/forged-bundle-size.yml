@@ -1,0 +1,25 @@
+# Attacker-authored workflow. It only has to be NAMED "Bundle size" and run on
+# pull_request to satisfy the privileged listener's workflow_run filter.
+name: Bundle size
+on: pull_request
+
+jobs:
+  forge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Craft the artifact the privileged workflow will trust
+        run: |
+          mkdir -p out
+          echo 1 > out/pr.txt
+          {
+            echo '### Bundle size report'
+            echo ''
+            echo 'ATTACKER-CONTROLLED-COMMENT-MARKER-9f3a'
+            echo ''
+            echo 'The text above is arbitrary attacker markdown posted by github-actions[bot].'
+          } > out/monosize.md
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: monosize-report
+          path: out/*
+          retention-days: 1
